@@ -26,6 +26,7 @@ This is a Python script with a graphical user interface (GUI) that allows you to
 - 802.11ac: python3 wifi5.py
 - 802.11ax: python3 wifi6.py
 - 802.11be: python3 wifi7.py
+- Selectable standard: python3 wifi.py
 
 
 4. The GUI will open, and you can start using the MCS speed calculator.

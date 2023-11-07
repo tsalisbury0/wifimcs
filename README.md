@@ -59,6 +59,10 @@ This is a Python script with a graphical user interface (GUI) that allows you to
 
 This script provides a simplified model for educational purposes and does not account for real-world complexities in wireless networks. The calculated MCS speeds may not precisely match actual Wi-Fi performance due to various environmental factors and channel conditions.
 
+## To Be Added
+
+Will take time to gather data on 802.11ad and 802.11ay but I intend to add them soon.
+
 ## Acknowledgments
 
 - Inspired by the 802.11a, 802.11b, 802.11g/SuperG, 802.11n, 802.11ac, 802.11ax, and 802.11be Wi-Fi standards.

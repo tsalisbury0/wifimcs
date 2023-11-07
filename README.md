@@ -55,9 +55,7 @@ This is a Python script with a graphical user interface (GUI) that allows you to
 - 802.11ax
 - 802.11be
 
-## Disclaimer
-
-This script provides a simplified model for educational purposes and does not account for real-world complexities in wireless networks. The calculated MCS speeds may not precisely match actual Wi-Fi performance due to various environmental factors and channel conditions.
+## NOTES
 
 -802.11a/b/g has no MIMO or 400ns/1600ns/3200ns Guard Intervals
 -802.11b only has MCS 0-4 and Bandwidth of 20MHz
@@ -66,6 +64,10 @@ This script provides a simplified model for educational purposes and does not ac
 -802.11ac only has MCS 0-8, MIMO up to 8 and Bandwidth up to 160MHz
 -802.11ax only has MCS 0-11, MIMO up to 8 and Bandwidth up to 160MHz
 -802.11be only has MCS 0-13, MIMO up to 16 and Bandwidth up to 320MHz
+
+## Disclaimer
+
+This script provides a simplified model for educational purposes and does not account for real-world complexities in wireless networks. The calculated MCS speeds may not precisely match actual Wi-Fi performance due to various environmental factors and channel conditions.
 
 ## To Be Added
 

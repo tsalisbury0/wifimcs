@@ -8,12 +8,12 @@ def calculate_mcs_speed():
 
     mcs_table = {
         "20MHz": {
-            "LongGI": [6.5, 13, 19.5, 26, 39, 52, 58.5, 65, 78, 104],
-            "ShortGI": [7.2, 14.4, 21.7, 28.9, 43.3, 57.8, 65, 72.2, 86.7, 115.6],
+            "LongGI": [6.5, 13, 19.5, 26, 39, 52, 58.5, 65, 78],
+            "ShortGI": [7.2, 14.4, 21.7, 28.9, 43.3, 57.8, 65, 72.2, 86.7],
         },
         "40MHz": {
-            "LongGI": [13, 26, 39, 52, 78, 104, 117, 130, 156, 208],
-            "ShortGI": [14.4, 28.9, 43.3, 57.8, 86.7, 115.6, 130, 144.4, 173.3, 231.1],
+            "LongGI": [13, 26, 39, 52, 78, 104, 117, 130, 156],
+            "ShortGI": [14.4, 28.9, 43.3, 57.8, 86.7, 115.6, 130, 144.4, 173.3],
         },
     }
 
@@ -61,7 +61,7 @@ spatial_streams_entry = tk.Entry(window, textvariable=spatial_streams_var)
 spatial_streams_entry.pack()
 
 # MCS index selection
-mcs_label = tk.Label(window, text="Select MCS Index (0-9 for 20MHz, 0-9 for 40MHz) (8-9 256QAM):")
+mcs_label = tk.Label(window, text="Select MCS Index (0-7 for 20MHz, 0-7 for 40MHz) (8 256QAM):")
 mcs_label.pack()
 
 mcs_var = tk.StringVar(value="0")

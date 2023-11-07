@@ -106,30 +106,30 @@ standard_combo.grid(row=0, column=1)
 standard_combo.set("802.11n")
 
 # MCS selection
-mcs_label = tk.Label(root, text="MCS (Modulation and Coding Scheme):")
+mcs_label = tk.Label(root, text="MCS (0-7 N, 0-8 AC, 0-11 AX, 0-13 BE):")
 mcs_label.grid(row=1, column=0)
 mcs_combo = ttk.Combobox(root, values=[str(i) for i in range(14)])
 mcs_combo.grid(row=1, column=1)
 mcs_combo.set("0")
 
 # Bandwidth selection
-bandwidth_label = tk.Label(root, text="Bandwidth (MHz):")
+bandwidth_label = tk.Label(root, text="MHz (20/40 N, 20-160 AC/AX, 20-320 BE):")
 bandwidth_label.grid(row=2, column=0)
 bandwidth_combo = ttk.Combobox(root, values=["20MHz", "40MHz", "80MHz", "160MHz", "320MHz"])
 bandwidth_combo.grid(row=2, column=1)
 bandwidth_combo.set("20MHz")
 
 # Guard Interval selection
-guard_interval_label = tk.Label(root, text="Guard Interval (ns):")
+guard_interval_label = tk.Label(root, text="GI (ns) (3200 BE Only):")
 guard_interval_label.grid(row=3, column=0)
 guard_interval_combo = ttk.Combobox(root, values=["800", "1600", "3200"])
 guard_interval_combo.grid(row=3, column=1)
 guard_interval_combo.set("800")
 
 # Spatial Streams entry
-spatial_streams_label = tk.Label(root, text="Spatial Streams:")
+spatial_streams_label = tk.Label(root, text="MIMO/MU-MIMO (1-4 N, 1-8 AC/AX, 1-16 BE):")
 spatial_streams_label.grid(row=4, column=0)
-spatial_streams_entry = tk.Entry(root)
+spatial_streams_entry = ttk.Combobox(root, values=["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16",])
 spatial_streams_entry.grid(row=4, column=1)
 
 # Calculate button

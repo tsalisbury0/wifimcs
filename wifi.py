@@ -12,6 +12,9 @@ MCS_DATA_RATES = {
         "20MHz": {
             "800": [6, 9, 12, 18, 24, 36, 48, 54],
          },
+         "SuperG": {
+            "800": [12, 18, 24, 36, 48, 72, 96, 108],
+         },
     },
     '802.11n': {
         "20MHz": {
@@ -125,7 +128,7 @@ mcs_combo.set("0")
 # Bandwidth selection
 bandwidth_label = tk.Label(root, text="MHz (20 A/B/G, 20/40 N, 20-160 AC/AX, 20-320 BE):")
 bandwidth_label.grid(row=2, column=0)
-bandwidth_combo = ttk.Combobox(root, values=["20MHz", "40MHz", "80MHz", "160MHz", "320MHz"])
+bandwidth_combo = ttk.Combobox(root, values=["20MHz", "SuperG", "40MHz", "80MHz", "160MHz", "320MHz"])
 bandwidth_combo.grid(row=2, column=1)
 bandwidth_combo.set("20MHz")
 

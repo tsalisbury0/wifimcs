@@ -127,6 +127,45 @@ MCS_DATA_RATES = {
     },
 }
 
+SPATIAL_STREAM_LIMITS = {
+    '802.11b': {
+        'min': 1,
+        'max': 1,
+    },
+    '802.11a': {
+        'min': 1,
+        'max': 1,
+    },
+    '802.11g': {
+        'min': 1,
+        'max': 1,
+    },
+    '802.11ah': {
+        'min': 1,
+        'max': 8,
+    },
+    '802.11n': {
+        'min': 1,
+        'max': 4,
+    },
+    '802.11ac': {
+        'min': 1,
+        'max': 8,
+    },
+    '802.11ax': {
+        'min': 1,
+        'max': 8,
+    },
+    '802.11ad': {
+        'min': 1,
+        'max': 1,
+    },
+    '802.11be': {
+        'min': 1,
+        'max': 16,
+    },
+}
+
 # Function to calculate data rate
 def calculate_data_rate():
     # Get user input values
@@ -143,9 +182,44 @@ def calculate_data_rate():
     else:
         result_label["text"] = "Invalid input values"
 
+
 # Create the main window
 root = tk.Tk()
 root.title("Wi-Fi Data Rate Calculator")
+
+# Function to update spatial stream options
+def update_spatial_stream_options(event):
+    selected_standard = standard_combo.get()
+    
+    if selected_standard in SPATIAL_STREAM_LIMITS:
+        min_limit = SPATIAL_STREAM_LIMITS[selected_standard]['min']
+        max_limit = SPATIAL_STREAM_LIMITS[selected_standard]['max']
+        spatial_streams_options = [str(i) for i in range(min_limit, max_limit + 1)]
+        spatial_streams_entry['values'] = spatial_streams_options
+        spatial_streams_entry.set(spatial_streams_options[0])  # Set the default value
+
+# Define the update_options function
+def update_options(event, combo):
+    selected_standard = combo.get()
+    
+    if selected_standard in MCS_DATA_RATES:
+        # Update available bandwidth options based on the selected standard
+        bandwidth_options = list(MCS_DATA_RATES[selected_standard].keys())
+        bandwidth_combo['values'] = bandwidth_options
+        bandwidth_combo.set(bandwidth_options[0])  # Set the default value
+
+        # Update available guard interval options based on the selected standard and bandwidth
+        selected_bandwidth = bandwidth_combo.get()
+        if selected_bandwidth in MCS_DATA_RATES[selected_standard]:
+            guard_interval_options = list(MCS_DATA_RATES[selected_standard][selected_bandwidth].keys())
+            guard_interval_combo['values'] = guard_interval_options
+            guard_interval_combo.set(guard_interval_options[0])  # Set the default value
+
+        # Update spatial stream options if applicable
+        update_spatial_stream_options(event)
+    else:
+        # Handle the case where the selected combination doesn't exist in the data dictionary
+        print("Selected combination not found in data dictionary")
 
 # Wi-Fi Standard selection
 standard_label = tk.Label(root, text="Wi-Fi Standard:")
@@ -153,6 +227,7 @@ standard_label.grid(row=0, column=0)
 standard_combo = ttk.Combobox(root, values=["802.11b", "802.11a", "802.11g", "802.11ah", "802.11n", "802.11ac", "802.11ax", "802.11ad", "802.11be"])
 standard_combo.grid(row=0, column=1)
 standard_combo.set("802.11b")
+standard_combo.bind("<<ComboboxSelected>>", lambda event, combo=standard_combo: update_options(event, combo))
 
 # MCS selection
 mcs_label = tk.Label(root, text="MCS:")

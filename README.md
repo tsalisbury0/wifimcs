@@ -1,11 +1,11 @@
 # Wi-Fi MCS Speed Calculator
 
-This is a Python script with a graphical user interface (GUI) that allows you to calculate MCS (Modulation and Coding Scheme) speeds for various Wi-Fi standards, including 802.11a, 802.11b, 802.11g/SuperG, 802.11n, 802.11ac, 802.11ax, and 802.11be. You can select the desired parameters such as bandwidth, guard interval, spatial streams, and MCS index to determine the data rate.
+This is a Python script with a graphical user interface (GUI) that allows you to calculate MCS (Modulation and Coding Scheme) speeds for various Wi-Fi standards, including 802.11a, 802.11b, 802.11g/SuperG, 802.11n, 802.11ac, 802.11ax, 802.11ad, and 802.11be. You can select the desired parameters such as bandwidth, guard interval, spatial streams, and MCS index to determine the data rate.
 
 ## Features
 
 - Calculate MCS speeds for different Wi-Fi standards.
-- Support for various bandwidth options (20MHz, SuperG, 40MHz, 80MHz, 160MHz, 320MHz).
+- Support for various bandwidth options (20MHz, SuperG, 40MHz, 80MHz, 160MHz, 320MHz, 2.16GHz).
 - Choose between different guard intervals (400ns, 800ns, 1600ns, 3200ns).
 - Specify the number of spatial streams.
 - Select the MCS index within the supported range.
@@ -33,7 +33,7 @@ This is a Python script with a graphical user interface (GUI) that allows you to
 
 ## Usage
 
-1. Select the desired bandwidth from the available options (20MHz, SuperG, 40MHz, 80MHz, 160MHz, 320MHz).
+1. Select the desired bandwidth from the available options (20MHz, SuperG, 40MHz, 80MHz, 160MHz, 320MHz, 2.16GHz).
 
 2. Choose the guard interval (e.g., 400ns, 800ns, 1600ns, 3200ns).
 
@@ -53,6 +53,7 @@ This is a Python script with a graphical user interface (GUI) that allows you to
 - 802.11n
 - 802.11ac
 - 802.11ax
+- 802.11ad
 - 802.11be
 
 ## NOTES
@@ -71,11 +72,11 @@ This script provides a simplified model for educational purposes and does not ac
 
 ## To Be Added
 
-Will take time to gather data on 802.11ad and 802.11ay but I intend to add them soon.
+Will take time to gather data on 802.11ay but I intend to add it soon.
 
 ## Acknowledgments
 
-- Inspired by the 802.11a, 802.11b, 802.11g/SuperG, 802.11n, 802.11ac, 802.11ax, and 802.11be Wi-Fi standards.
+- Inspired by the 802.11a, 802.11b, 802.11g/SuperG, 802.11n, 802.11ac, 802.11ax, 802.11ad, and 802.11be Wi-Fi standards.
 
 ## Author
 

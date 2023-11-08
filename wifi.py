@@ -142,7 +142,7 @@ SPATIAL_STREAM_LIMITS = {
     },
     '802.11ah': {
         'min': 1,
-        'max': 8,
+        'max': 4,
     },
     '802.11n': {
         'min': 1,

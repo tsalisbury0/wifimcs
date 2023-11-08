@@ -87,6 +87,14 @@ MCS_DATA_RATES = {
             "800": [144, 288, 432, 577, 865, 1153, 1297, 1441, 1729, 1922, 2162, 2402, 2594, 2882],
             "1600": [136, 272, 408, 544, 817, 1089, 1225, 1361, 1633, 1815, 2042, 2269, 2450, 2772],
             "3200": [123, 245, 368, 490, 735, 980, 1103, 1225, 1470, 1633, 1838, 2042, 2205, 2450],
+            
+        },
+    },
+        '802.11ad': {
+        "2.16GHz": {
+            "SC-PHY": [27.5, 385, 770, 962.5, 1155, 1251.25, 1540, 1925, 2310, 2502.5, 3080, 3850, 4620],
+            "OFDM-PHY": [27.5, 693, 866.25, 1386, 1732.5, 2079, 2772, 3465, 4158, 4504.5, 5197.5, 6237, 6756.75],
+            "LPSC-PHY": [27.5, 626, 834, 1112, 1251, 1668, 2224, 2503],
         },
     }
 }
@@ -114,33 +122,33 @@ root.title("Wi-Fi Data Rate Calculator")
 # Wi-Fi Standard selection
 standard_label = tk.Label(root, text="Wi-Fi Standard:")
 standard_label.grid(row=0, column=0)
-standard_combo = ttk.Combobox(root, values=["802.11b", "802.11a/g", "802.11n", "802.11ac", "802.11ax", "802.11be"])
+standard_combo = ttk.Combobox(root, values=["802.11b", "802.11a/g", "802.11n", "802.11ac", "802.11ax", "802.11ad", "802.11be"])
 standard_combo.grid(row=0, column=1)
 standard_combo.set("802.11b")
 
 # MCS selection
-mcs_label = tk.Label(root, text="MCS (0-4 B, 0-7 A/G/N, 0-8 AC, 0-11 AX, 0-13 BE):")
+mcs_label = tk.Label(root, text="MCS:")
 mcs_label.grid(row=1, column=0)
 mcs_combo = ttk.Combobox(root, values=[str(i) for i in range(14)])
 mcs_combo.grid(row=1, column=1)
 mcs_combo.set("0")
 
 # Bandwidth selection
-bandwidth_label = tk.Label(root, text="MHz (20 A/B/G, 20/40 N, 20-160 AC/AX, 20-320 BE):")
+bandwidth_label = tk.Label(root, text="Bandwidth:")
 bandwidth_label.grid(row=2, column=0)
-bandwidth_combo = ttk.Combobox(root, values=["20MHz", "SuperG", "40MHz", "80MHz", "160MHz", "320MHz"])
+bandwidth_combo = ttk.Combobox(root, values=["20MHz", "SuperG", "40MHz", "80MHz", "160MHz", "320MHz", "1.08GHz", "2.16GHz", "4.32GHz", "6.48GHz", "8.64GHz"])
 bandwidth_combo.grid(row=2, column=1)
 bandwidth_combo.set("20MHz")
 
 # Guard Interval selection
-guard_interval_label = tk.Label(root, text="GI (ns) (3200 BE Only):")
+guard_interval_label = tk.Label(root, text="GI (Sub-6) (ns) / MOD (mmWave):")
 guard_interval_label.grid(row=3, column=0)
-guard_interval_combo = ttk.Combobox(root, values=["400", "800", "1600", "3200"])
+guard_interval_combo = ttk.Combobox(root, values=["400", "800", "1600", "3200", "SC-PHY", "OFDM-PHY", "LPSC-PHY"])
 guard_interval_combo.grid(row=3, column=1)
 guard_interval_combo.set("800")
 
 # Spatial Streams entry
-spatial_streams_label = tk.Label(root, text="MIMO/MU-MIMO (1 A/B/G, 1-4 N, 1-8 AC/AX, 1-16 BE):")
+spatial_streams_label = tk.Label(root, text="MIMO/MU-MIMO:")
 spatial_streams_label.grid(row=4, column=0)
 spatial_streams_entry = ttk.Combobox(root, values=["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16",])
 spatial_streams_entry.grid(row=4, column=1)

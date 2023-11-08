@@ -8,7 +8,12 @@ MCS_DATA_RATES = {
             "800": [1, 2, 5.5, 11],
          },
     },
-    '802.11a/g': {
+    '802.11a': {
+        "20MHz": {
+            "800": [6, 9, 12, 18, 24, 36, 48, 54],
+         },
+    },
+    '802.11g': {
         "20MHz": {
             "800": [6, 9, 12, 18, 24, 36, 48, 54],
          },
@@ -122,7 +127,7 @@ root.title("Wi-Fi Data Rate Calculator")
 # Wi-Fi Standard selection
 standard_label = tk.Label(root, text="Wi-Fi Standard:")
 standard_label.grid(row=0, column=0)
-standard_combo = ttk.Combobox(root, values=["802.11b", "802.11a/g", "802.11n", "802.11ac", "802.11ax", "802.11ad", "802.11be"])
+standard_combo = ttk.Combobox(root, values=["802.11b", "802.11a", "802.11g", "802.11n", "802.11ac", "802.11ax", "802.11ad", "802.11be"])
 standard_combo.grid(row=0, column=1)
 standard_combo.set("802.11b")
 
@@ -136,7 +141,7 @@ mcs_combo.set("0")
 # Bandwidth selection
 bandwidth_label = tk.Label(root, text="Bandwidth:")
 bandwidth_label.grid(row=2, column=0)
-bandwidth_combo = ttk.Combobox(root, values=["20MHz", "SuperG", "40MHz", "80MHz", "160MHz", "320MHz", "1.08GHz", "2.16GHz", "4.32GHz", "6.48GHz", "8.64GHz"])
+bandwidth_combo = ttk.Combobox(root, values=["20MHz", "SuperG", "40MHz", "80MHz", "160MHz", "320MHz", "1.08GHz*", "2.16GHz", "4.32GHz*", "6.48GHz*", "8.64GHz*"])
 bandwidth_combo.grid(row=2, column=1)
 bandwidth_combo.set("20MHz")
 
@@ -148,7 +153,7 @@ guard_interval_combo.grid(row=3, column=1)
 guard_interval_combo.set("800")
 
 # Spatial Streams entry
-spatial_streams_label = tk.Label(root, text="MIMO/MU-MIMO:")
+spatial_streams_label = tk.Label(root, text="SISO/MIMO/MU-MIMO:")
 spatial_streams_label.grid(row=4, column=0)
 spatial_streams_entry = ttk.Combobox(root, values=["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16",])
 spatial_streams_entry.grid(row=4, column=1)

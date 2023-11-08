@@ -141,7 +141,7 @@ mcs_combo.set("0")
 # Bandwidth selection
 bandwidth_label = tk.Label(root, text="Bandwidth:")
 bandwidth_label.grid(row=2, column=0)
-bandwidth_combo = ttk.Combobox(root, values=["20MHz", "SuperG", "40MHz", "80MHz", "160MHz", "320MHz", "1.08GHz*", "2.16GHz", "4.32GHz*", "6.48GHz*", "8.64GHz*"])
+bandwidth_combo = ttk.Combobox(root, values=["20MHz", "SuperG", "40MHz", "80MHz", "160MHz", "320MHz", "2.16GHz"])
 bandwidth_combo.grid(row=2, column=1)
 bandwidth_combo.set("20MHz")
 

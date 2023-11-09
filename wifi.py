@@ -127,12 +127,12 @@ MCS_DATA_RATES = {
     },
         '802.11af': {
             "6MHz": {
-                "6μs": [1.8, 3.6, 5.4, 7.2, 10.8, 14.4, 16.2, 18.0, 21.6, 24.0],
-                "4μs": [2.0, 4.0, 6.0, 8.0, 12.0, 16.0, 18.0, 20.0, 24.0, 26.7],
+                "5μs": [1.8, 3.6, 5.4, 7.2, 10.8, 14.4, 16.2, 18.0, 21.6, 24.0],
+                "3μs": [2.0, 4.0, 6.0, 8.0, 12.0, 16.0, 18.0, 20.0, 24.0, 26.7],
             },
             "8MHz": {
-                "4.5μs": [2.4, 4.8, 7.2, 9.6, 14.4, 19.2, 21.6, 24.0, 28.8, 32.0],
-                "2.25μs": [2.7, 5.3, 8.0, 10.7, 16.0, 21.3, 24.0, 26.7, 32.0, 35.6],
+                "5μs": [2.4, 4.8, 7.2, 9.6, 14.4, 19.2, 21.6, 24.0, 28.8, 32.0],
+                "3μs": [2.7, 5.3, 8.0, 10.7, 16.0, 21.3, 24.0, 26.7, 32.0, 35.6],
             },
     },
 }
@@ -152,7 +152,7 @@ SPATIAL_STREAM_LIMITS = {
     },
     '802.11ah': {
         'min': 1,
-        'max': 8,
+        'max': 4,
     },
     '802.11n': {
         'min': 1,
@@ -176,7 +176,7 @@ SPATIAL_STREAM_LIMITS = {
     },
     '802.11af': {
         'min': 1,
-        'max': 1,
+        'max': 4,
     },
 }
 
@@ -260,7 +260,7 @@ bandwidth_combo.set("20MHz")
 # Guard Interval selection
 guard_interval_label = tk.Label(root, text="GI (Sub-6) (ns) / MOD (mmWave):")
 guard_interval_label.grid(row=3, column=0)
-guard_interval_combo = ttk.Combobox(root, values=["2.25μs", "3μs", "4μs", "4.5μs", "6μs", "8μs", "400", "800", "1600", "3200", "SC-PHY", "OFDM-PHY", "LPSC-PHY"])
+guard_interval_combo = ttk.Combobox(root, values=["3μs", "4μs", "5μs", "6μs", "8μs", "400", "800", "1600", "3200", "SC-PHY", "OFDM-PHY", "LPSC-PHY"])
 guard_interval_combo.grid(row=3, column=1)
 guard_interval_combo.set("800")
 

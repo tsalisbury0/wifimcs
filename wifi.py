@@ -1,3 +1,5 @@
+import os
+import sys
 import tkinter as tk
 from tkinter import ttk
 
@@ -251,6 +253,22 @@ def calculate_data_rate():
 # Create the main window
 root = tk.Tk()
 root.title("Wi-Fi Data Rate Calculator")
+
+# App icon: bundled beside the executable by PyInstaller, or in build/ when
+# running straight from source
+def find_icon():
+    base = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
+    for path in (os.path.join(base, "wifi8.ico"), os.path.join(base, "build", "wifi8.ico")):
+        if os.path.exists(path):
+            return path
+    return None
+
+icon_path = find_icon()
+if icon_path:
+    try:
+        root.iconbitmap(icon_path)
+    except tk.TclError:
+        pass
 
 # Function to update spatial stream options
 def update_spatial_stream_options(event):

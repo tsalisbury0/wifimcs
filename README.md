@@ -23,12 +23,10 @@ This is a Python script with a graphical user interface (GUI) that allows you to
 2. Open a terminal and navigate to the directory where the script is located.
 
 3. Run the script using the following command:
-- 802.11n: python3 wifi4.py
-- 802.11ac: python3 wifi5.py
-- 802.11ax: python3 wifi6.py
-- 802.11be: python3 wifi7.py
-- 802.11bn: python3 wifi8.py
-- Selectable standard: python3 wifi.py
+- python3 wifi.py
+
+The standard, bandwidth, guard interval, spatial streams and MCS index are all
+selected inside the window, so one script covers every supported standard.
 
 
 4. The GUI will open, and you can start using the MCS speed calculator.

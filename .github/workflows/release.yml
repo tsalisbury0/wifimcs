@@ -154,19 +154,16 @@ jobs:
           fi
 
       - uses: softprops/action-gh-release@v2
-        if: steps.notes.outputs.found == 'yes'
-        with:
-          tag_name: ${{ github.ref_name }}
-          name: Wi-Fi MCS Calculator ${{ github.ref_name }}
-          body_path: release-notes/${{ github.ref_name }}.md
-          files: artifacts/*
-          draft: false
-
-      - uses: softprops/action-gh-release@v2
-        if: steps.notes.outputs.found == 'no'
         with:
           tag_name: ${{ github.ref_name }}
           name: Wi-Fi MCS Calculator ${{ github.ref_name }}
           files: artifacts/*
           generate_release_notes: true
           draft: false
+
+      # Overwrites the generated body, so an existing release is updated too
+      - name: Apply handwritten release notes
+        if: steps.notes.outputs.found == 'yes'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release edit "${GITHUB_REF_NAME}" --notes-file "release-notes/${GITHUB_REF_NAME}.md"

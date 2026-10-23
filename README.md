@@ -1,6 +1,6 @@
 # Wi-Fi MCS Speed Calculator
 
-This is a Python script with a graphical user interface (GUI) that allows you to calculate MCS (Modulation and Coding Scheme) speeds for various Wi-Fi standards, including 802.11a, 802.11b, 802.11g/SuperG, 802.11n, 802.11ad, 802.11ac, 802.11af, 802.11ah, 802.11ax, and 802.11be. You can select the desired parameters such as bandwidth, guard interval, spatial streams, and MCS index to determine the data rate.
+This is a Python script with a graphical user interface (GUI) that allows you to calculate MCS (Modulation and Coding Scheme) speeds for various Wi-Fi standards, including 802.11a, 802.11b, 802.11g/SuperG, 802.11n, 802.11ad, 802.11ac, 802.11af, 802.11ah, 802.11ax, 802.11be, and 802.11bn (Wi-Fi 8). You can select the desired parameters such as bandwidth, guard interval, spatial streams, and MCS index to determine the data rate.
 
 ## Features
 
@@ -9,6 +9,7 @@ This is a Python script with a graphical user interface (GUI) that allows you to
 - Choose between different guard intervals (400ns, 800ns, 1600ns, 3200ns).
 - Specify the number of spatial streams.
 - Select the MCS index within the supported range.
+- Wi-Fi 8 additionally offers its finer MCS steps (15, 17, 19, 20 and 23).
 
 ## Prerequisites
 
@@ -26,6 +27,7 @@ This is a Python script with a graphical user interface (GUI) that allows you to
 - 802.11ac: python3 wifi5.py
 - 802.11ax: python3 wifi6.py
 - 802.11be: python3 wifi7.py
+- 802.11bn: python3 wifi8.py
 - Selectable standard: python3 wifi.py
 
 
@@ -57,6 +59,7 @@ This is a Python script with a graphical user interface (GUI) that allows you to
 - 802.11ah (2017)
 - 802.11ax (2021)
 - 802.11be (2024)
+- 802.11bn / Wi-Fi 8 (draft, expected 2028)
 
 ## Disclaimer
 
@@ -64,11 +67,11 @@ This script provides a simplified model for educational purposes and does not ac
 
 ## To Be Added
 
-Will take time to gather data on 802.11ay but I intend to add it soon. With WiFi 8 being drafted too I'll add it once the MCS chart gets released.
+Will take time to gather data on 802.11ay but I intend to add it soon. 802.11bn (Wi-Fi 8) is included from the UHR draft, so its figures may still change before ratification.
 
 ## Acknowledgments
 
-- Inspired by the 802.11a, 802.11b, 802.11g/SuperG, 802.11n, 802.11ad, 802.11ac, 802.11af, 802.11ah, 802.11ax, and 802.11be Wi-Fi standards.
+- Inspired by the 802.11a, 802.11b, 802.11g/SuperG, 802.11n, 802.11ad, 802.11ac, 802.11af, 802.11ah, 802.11ax, 802.11be, and 802.11bn Wi-Fi standards.
 
 ## Author
 

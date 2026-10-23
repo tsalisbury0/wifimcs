@@ -95,6 +95,33 @@ MCS_DATA_RATES = {
             
         },
     },
+    '802.11bn': {
+        "20MHz": {
+            "800": {0: 8.6, 1: 17.2, 2: 25.8, 3: 34.4, 4: 51.6, 5: 68.8, 6: 77.4, 7: 86.0, 8: 103.2, 9: 114.7, 10: 129.0, 11: 143.4, 12: 154.9, 13: 172.1, 15: 4.3, 17: 22.9, 19: 45.9, 20: 57.4, 23: 91.8},
+            "1600": {0: 8.1, 1: 16.2, 2: 24.4, 3: 32.5, 4: 48.7, 5: 65.0, 6: 73.1, 7: 81.2, 8: 97.5, 9: 108.3, 10: 121.8, 11: 135.4, 12: 146.3, 13: 162.5, 15: 4.1, 17: 21.6, 19: 43.4, 20: 54.2, 23: 86.7},
+            "3200": {0: 7.3, 1: 14.6, 2: 21.9, 3: 29.2, 4: 43.9, 5: 58.5, 6: 65.8, 7: 73.1, 8: 87.7, 9: 97.5, 10: 109.7, 11: 121.9, 12: 131.7, 13: 146.3, 15: 3.7, 17: 19.5, 19: 39.0, 20: 48.8, 23: 78.0},
+        },
+        "40MHz": {
+            "800": {0: 17.2, 1: 34.4, 2: 51.6, 3: 68.8, 4: 103.2, 5: 137.6, 6: 154.9, 7: 172.1, 8: 206.5, 9: 229.4, 10: 258.1, 11: 286.8, 12: 309.7, 13: 344.1, 15: 8.6, 17: 45.9, 19: 91.8, 20: 114.7, 23: 183.5},
+            "1600": {0: 16.2, 1: 32.5, 2: 48.7, 3: 65.0, 4: 97.5, 5: 130.0, 6: 146.3, 7: 162.5, 8: 195.0, 9: 216.7, 10: 243.8, 11: 270.9, 12: 292.5, 13: 325.0, 15: 8.1, 17: 43.4, 19: 86.7, 20: 108.3, 23: 173.3},
+            "3200": {0: 14.6, 1: 29.2, 2: 43.9, 3: 58.5, 4: 87.7, 5: 117.0, 6: 131.7, 7: 146.3, 8: 175.5, 9: 195.0, 10: 219.4, 11: 243.8, 12: 263.2, 13: 292.5, 15: 7.3, 17: 39.0, 19: 78.0, 20: 97.5, 23: 156.0},
+        },
+        "80MHz": {
+            "800": {0: 36.0, 1: 72.1, 2: 108.1, 3: 144.1, 4: 216.2, 5: 288.2, 6: 324.3, 7: 360.3, 8: 432.4, 9: 480.4, 10: 540.4, 11: 600.4, 12: 648.5, 13: 720.6, 15: 18.0, 17: 96.0, 19: 192.1, 20: 240.1, 23: 384.3},
+            "1600": {0: 34.0, 1: 68.1, 2: 102.1, 3: 136.1, 4: 204.2, 5: 272.2, 6: 306.3, 7: 340.3, 8: 408.4, 9: 453.7, 10: 510.4, 11: 567.0, 12: 612.5, 13: 680.6, 15: 17.0, 17: 90.7, 19: 181.4, 20: 226.8, 23: 363.0},
+            "3200": {0: 30.6, 1: 61.3, 2: 91.9, 3: 122.5, 4: 183.8, 5: 245.0, 6: 275.7, 7: 306.3, 8: 367.5, 9: 408.3, 10: 459.3, 11: 510.3, 12: 551.2, 13: 612.5, 15: 15.3, 17: 81.6, 19: 163.3, 20: 204.1, 23: 326.7},
+        },
+        "160MHz": {
+            "800": {0: 72.1, 1: 144.1, 2: 216.2, 3: 288.2, 4: 432.4, 5: 576.5, 6: 648.5, 7: 720.6, 8: 864.7, 9: 960.7, 10: 1080.9, 11: 1201.0, 12: 1297.1, 13: 1441.2, 15: 36.0, 17: 192.1, 19: 384.3, 20: 480.4, 23: 768.6},
+            "1600": {0: 68.1, 1: 136.1, 2: 204.2, 3: 272.2, 4: 408.4, 5: 544.5, 6: 612.5, 7: 680.6, 8: 816.7, 9: 907.3, 10: 1020.9, 11: 1134.3, 12: 1225.0, 13: 1361.1, 15: 34.0, 17: 181.4, 19: 363.0, 20: 453.7, 23: 725.9},
+            "3200": {0: 61.3, 1: 122.5, 2: 183.8, 3: 245.0, 4: 367.5, 5: 490.0, 6: 551.2, 7: 612.5, 8: 735.0, 9: 816.6, 10: 918.8, 11: 1020.9, 12: 1102.5, 13: 1225.0, 15: 30.6, 17: 163.3, 19: 326.7, 20: 408.3, 23: 653.3},
+        },
+        "320MHz": {
+            "800": {0: 144.1, 1: 288.2, 2: 432.4, 3: 576.5, 4: 864.7, 5: 1152.9, 6: 1297.1, 7: 1441.2, 8: 1729.4, 9: 1921.5, 10: 2161.8, 11: 2401.9, 12: 2594.1, 13: 2882.4, 15: 72.1, 17: 384.3, 19: 768.6, 20: 960.7, 23: 1537.2},
+            "1600": {0: 136.1, 1: 272.2, 2: 408.4, 3: 544.5, 4: 816.7, 5: 1088.9, 6: 1225.0, 7: 1361.1, 8: 1633.3, 9: 1814.8, 10: 2041.7, 11: 2268.5, 12: 2450.0, 13: 2722.3, 15: 68.1, 17: 363.0, 19: 725.9, 20: 907.3, 23: 1451.8},
+            "3200": {0: 122.5, 1: 245.0, 2: 367.5, 3: 490.0, 4: 735.0, 5: 980.0, 6: 1102.5, 7: 1225.0, 8: 1470.0, 9: 1633.3, 10: 1837.5, 11: 2041.6, 12: 2205.0, 13: 2450.0, 15: 61.3, 17: 326.7, 19: 653.3, 20: 816.6, 23: 1306.6},
+        },
+    },
         '802.11ad': {
         "2.16GHz": {
             "SC-PHY": [27.5, 385, 770, 962.5, 1155, 1251.25, 1540, 1925, 2310, 2502.5, 3080, 3850, 4620],
@@ -178,7 +205,27 @@ SPATIAL_STREAM_LIMITS = {
         'min': 1,
         'max': 4,
     },
+    '802.11bn': {
+        'min': 1,
+        'max': 8,
+    },
 }
+
+# MCS indices offered per standard. Most standards use consecutive indices from
+# 0 upwards, but 802.11bn adds finer steps and skips the unused indices.
+MCS_INDEX_OPTIONS = {
+    '802.11bn': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 17, 19, 20, 23],
+}
+
+# Function to look up the per-stream rate for an MCS index. Rates are stored as
+# a list indexed by MCS index, or as an MCS index keyed dict for standards that
+# skip indices.
+def get_mcs_rate(rate_table, mcs_index):
+    if isinstance(rate_table, dict):
+        return rate_table.get(mcs_index)
+    if 0 <= mcs_index < len(rate_table):
+        return rate_table[mcs_index]
+    return None
 
 # Function to calculate data rate
 def calculate_data_rate():
@@ -191,8 +238,12 @@ def calculate_data_rate():
 
     # Check if entered values are valid keys in MCS_DATA_RATES dictionary
     if standard in MCS_DATA_RATES and bandwidth in MCS_DATA_RATES[standard] and guard_interval in MCS_DATA_RATES[standard][bandwidth]:
-        data_rate = MCS_DATA_RATES[standard][bandwidth][guard_interval][mcs_index] * spatial_streams
-        result_label["text"] = f"{data_rate} Mbps"
+        mcs_rate = get_mcs_rate(MCS_DATA_RATES[standard][bandwidth][guard_interval], mcs_index)
+        if mcs_rate is None:
+            result_label["text"] = f"MCS {mcs_index} is not defined for {standard} {bandwidth}"
+        else:
+            data_rate = mcs_rate * spatial_streams
+            result_label["text"] = f"{round(data_rate, 2)} Mbps"
     else:
         result_label["text"] = "Invalid input values"
 
@@ -229,6 +280,11 @@ def update_options(event, combo):
             guard_interval_combo['values'] = guard_interval_options
             guard_interval_combo.set(guard_interval_options[0])  # Set the default value
 
+        # Update the selectable MCS indices, since 802.11bn skips some of them
+        mcs_options = [str(i) for i in MCS_INDEX_OPTIONS.get(selected_standard, range(14))]
+        mcs_combo['values'] = mcs_options
+        mcs_combo.set(mcs_options[0])
+
         # Update spatial stream options if applicable
         update_spatial_stream_options(event)
     else:
@@ -238,7 +294,7 @@ def update_options(event, combo):
 # Wi-Fi Standard selection
 standard_label = tk.Label(root, text="Wi-Fi Standard:")
 standard_label.grid(row=0, column=0)
-standard_combo = ttk.Combobox(root, values=["802.11b", "802.11a", "802.11g", "802.11n", "802.11ac", "802.11af", "802.11ah", "802.11ax", "802.11ad", "802.11be"])
+standard_combo = ttk.Combobox(root, values=["802.11b", "802.11a", "802.11g", "802.11n", "802.11ac", "802.11af", "802.11ah", "802.11ax", "802.11ad", "802.11be", "802.11bn"])
 standard_combo.grid(row=0, column=1)
 standard_combo.set("802.11b")
 standard_combo.bind("<<ComboboxSelected>>", lambda event, combo=standard_combo: update_options(event, combo))

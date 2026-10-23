@@ -213,12 +213,6 @@ SPATIAL_STREAM_LIMITS = {
     },
 }
 
-# MCS indices offered per standard. Most standards use consecutive indices from
-# 0 upwards, but 802.11bn adds finer steps and skips the unused indices.
-MCS_INDEX_OPTIONS = {
-    '802.11bn': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 17, 19, 20, 23],
-}
-
 # Function to look up the per-stream rate for an MCS index. Rates are stored as
 # a list indexed by MCS index, or as an MCS index keyed dict for standards that
 # skip indices.
@@ -285,6 +279,23 @@ def update_spatial_stream_options(event):
         spatial_streams_entry['values'] = spatial_streams_options
         spatial_streams_entry.set(spatial_streams_options[0])  # Set the default value
 
+# Update the MCS selector to the indices the current standard, bandwidth and
+# guard interval actually define, keeping the selection when it is still valid
+def update_mcs_options(event=None):
+    standard = standard_combo.get()
+    bandwidth = bandwidth_combo.get()
+    guard_interval = guard_interval_combo.get()
+
+    table = MCS_DATA_RATES.get(standard, {}).get(bandwidth, {}).get(guard_interval)
+    if not table:
+        return
+
+    indices = sorted(table) if isinstance(table, dict) else list(range(len(table)))
+    options = [str(i) for i in indices]
+    current = mcs_combo.get()
+    mcs_combo['values'] = options
+    mcs_combo.set(current if current in options else options[0])
+
 # Define the update_options function
 def update_options(event, combo):
     selected_standard = combo.get()
@@ -302,10 +313,8 @@ def update_options(event, combo):
             guard_interval_combo['values'] = guard_interval_options
             guard_interval_combo.set(guard_interval_options[0])  # Set the default value
 
-        # Update the selectable MCS indices, since 802.11bn skips some of them
-        mcs_options = [str(i) for i in MCS_INDEX_OPTIONS.get(selected_standard, range(14))]
-        mcs_combo['values'] = mcs_options
-        mcs_combo.set(mcs_options[0])
+        # Update the selectable MCS indices for this standard and bandwidth
+        update_mcs_options()
 
         # Update spatial stream options if applicable
         update_spatial_stream_options(event)
@@ -342,6 +351,10 @@ guard_interval_combo = ttk.Combobox(root, values=["3μs", "4μs", "5μs", "6μs"
 guard_interval_combo.grid(row=3, column=1)
 guard_interval_combo.set("800")
 
+# The valid MCS range depends on the bandwidth as well as the standard
+bandwidth_combo.bind("<<ComboboxSelected>>", update_mcs_options)
+guard_interval_combo.bind("<<ComboboxSelected>>", update_mcs_options)
+
 # Spatial Streams entry
 spatial_streams_label = tk.Label(root, text="SISO/MIMO/MU-MIMO:")
 spatial_streams_label.grid(row=4, column=0)
@@ -356,5 +369,8 @@ calculate_button.grid(row=5, column=0, columnspan=2)
 # Result label
 result_label = tk.Label(root, text="", font=("Arial", 12))
 result_label.grid(row=6, column=0, columnspan=2)
+
+# Populate the MCS selector for the standard shown at startup
+update_mcs_options()
 
 root.mainloop()

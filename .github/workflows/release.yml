@@ -138,7 +138,29 @@ jobs:
       - name: Show collected files
         run: ls -lh artifacts
 
+      # Hand-written notes win when release-notes/<tag>.md exists, so each
+      # release can explain its fixes; otherwise fall back to GitHub's
+      # commit-generated notes.
+      - name: Check for handwritten notes
+        id: notes
+        run: |
+          if [ -f "release-notes/${{ github.ref_name }}.md" ]; then
+            echo "found=yes" >> "$GITHUB_OUTPUT"
+          else
+            echo "found=no" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: softprops/action-gh-release@v2
+        if: steps.notes.outputs.found == 'yes'
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Wi-Fi MCS Calculator ${{ github.ref_name }}
+          body_path: release-notes/${{ github.ref_name }}.md
+          files: artifacts/*
+          draft: false
+
+      - uses: softprops/action-gh-release@v2
+        if: steps.notes.outputs.found == 'no'
         with:
           tag_name: ${{ github.ref_name }}
           name: Wi-Fi MCS Calculator ${{ github.ref_name }}

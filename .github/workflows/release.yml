@@ -1,0 +1,147 @@
+name: Build releases
+
+# PyInstaller cannot cross-compile, so every target is built on a runner of
+# that architecture. Pushing a v* tag builds all five and publishes a release.
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: ${{ matrix.label }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: windows-latest, label: windows-x64, pyarch: x64 }
+          - { os: windows-latest, label: windows-x86, pyarch: x86 }
+          - { os: windows-11-arm, label: windows-arm64, pyarch: arm64 }
+          - { os: ubuntu-latest, label: linux-x64 }
+          - { os: ubuntu-24.04-arm, label: linux-arm64 }
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # ----- Windows -----
+
+      - name: Set up Python (32-bit and 64-bit Intel/AMD)
+        if: runner.os == 'Windows' && matrix.pyarch != 'arm64'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          architecture: ${{ matrix.pyarch }}
+
+      # ARM64 runners ship their own ARM native Python; resolve it explicitly and
+      # refuse anything emulated so we never ship an x64 binary by accident.
+      - name: Resolve Python (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          if ("${{ matrix.pyarch }}" -ne "arm64") {
+            $python = (Get-Command python -ErrorAction SilentlyContinue).Source
+          } else {
+            $python = $null
+            foreach ($cmd in @("python", "python3", "py")) {
+              $exe = (Get-Command $cmd -ErrorAction SilentlyContinue).Source
+              if (-not $exe) { continue }
+              $machine = & $exe -c "import platform; print(platform.machine())" 2>$null
+              if ($machine -match "ARM64") { $python = $exe; break }
+            }
+          }
+          if (-not $python) { throw "No Python found for ${{ matrix.pyarch }}" }
+          & $python -c "import platform, sys; print(sys.version); print(platform.machine()); print(platform.architecture())"
+          "PYTHON=$python" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Install PyInstaller (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          & $env:PYTHON -m pip install --upgrade pip pyinstaller
+          if ($LASTEXITCODE -ne 0) { throw "pip install failed" }
+
+      - name: Build (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $icon = Join-Path $PWD "assets/wifi8.ico"
+          & $env:PYTHON -m PyInstaller --noconfirm --onefile --windowed `
+            --name WiFi-MCS-Calculator --icon $icon --add-data "$icon;." wifi.py
+          if ($LASTEXITCODE -ne 0) { throw "PyInstaller failed" }
+
+      - name: Verify architecture (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $exe = "dist/WiFi-MCS-Calculator.exe"
+          $bytes = [System.IO.File]::ReadAllBytes((Resolve-Path $exe))
+          $pe = [BitConverter]::ToInt32($bytes, 0x3C)
+          $machine = [BitConverter]::ToUInt16($bytes, $pe + 4)
+          $expected = @{ x86 = 0x014c; x64 = 0x8664; arm64 = 0xAA64 }["${{ matrix.pyarch }}"]
+          $got = "{0:X4}" -f $machine
+          Write-Host "PE machine: 0x$got (expected 0x$('{0:X4}' -f $expected))"
+          if ($machine -ne $expected) { throw "Wrong architecture: 0x$got" }
+          Move-Item $exe "dist/WiFi-MCS-Calculator-${{ matrix.label }}.exe"
+
+      # ----- Linux -----
+
+      - name: Set up Python (Linux)
+        if: runner.os == 'Linux'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install tkinter and PyInstaller (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-tk
+          python -m pip install --upgrade pip pyinstaller
+
+      - name: Build (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          python -m PyInstaller --noconfirm --onefile --name WiFi-MCS-Calculator wifi.py
+
+      - name: Verify and package (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          file dist/WiFi-MCS-Calculator
+          case "${{ matrix.label }}" in
+            linux-x64)   file dist/WiFi-MCS-Calculator | grep -q "x86-64" ;;
+            linux-arm64) file dist/WiFi-MCS-Calculator | grep -q "aarch64" ;;
+          esac
+          tar -C dist -czf "dist/WiFi-MCS-Calculator-${{ matrix.label }}.tar.gz" WiFi-MCS-Calculator
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.label }}
+          path: dist/WiFi-MCS-Calculator-*
+          if-no-files-found: error
+
+  release:
+    name: Publish release
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+
+      - name: Show collected files
+        run: ls -lh artifacts
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Wi-Fi MCS Calculator ${{ github.ref_name }}
+          files: artifacts/*
+          generate_release_notes: true
+          draft: false
